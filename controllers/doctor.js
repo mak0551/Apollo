@@ -1,9 +1,29 @@
-import { doctor } from "../models/doctor";
+import { doctor } from "../models/doctor.js";
 
 export const addDoctor = async (req, res) => {
   try {
-    const body = req.body;
-    const newDoc = new doctor(body);
+    const {
+      name,
+      specialization,
+      experience_years,
+      qualifications,
+      location,
+      clinic_name,
+      rating,
+      consultation_fees,
+      availability,
+    } = req.body;
+    const newDoc = new doctor(
+      name,
+      specialization,
+      experience_years,
+      qualifications,
+      location,
+      clinic_name,
+      rating,
+      consultation_fees,
+      availability
+    );
     await newDoc.save();
     res.status(200).json(newDoc);
   } catch (err) {
