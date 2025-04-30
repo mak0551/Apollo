@@ -13,7 +13,7 @@ export const addDoctor = async (req, res) => {
       consultation_fees,
       availability,
     } = req.body;
-    const newDoc = new doctor(
+    const newDoc = new doctor({
       name,
       specialization,
       experience_years,
@@ -22,8 +22,8 @@ export const addDoctor = async (req, res) => {
       clinic_name,
       rating,
       consultation_fees,
-      availability
-    );
+      availability,
+    });
     await newDoc.save();
     res.status(200).json(newDoc);
   } catch (err) {
