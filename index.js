@@ -1,11 +1,9 @@
 import express from "express";
 import mongoose from "mongoose";
 import doctor from "./routes/doctor.js";
+import cors from "cors";
 import dotenv from "dotenv";
 dotenv.config();
-
-const app = express();
-app.use(express.json());
 
 const connectWithRetry = () => {
   return mongoose
@@ -19,6 +17,11 @@ const connectWithRetry = () => {
     });
 };
 connectWithRetry();
+
+const app = express();
+app.use(express.json());
+
+app.use(cors({ origin: "*" }));
 
 app.listen(process.env.PORT, () => {
   console.log(
