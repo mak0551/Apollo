@@ -20,6 +20,7 @@ const doctorSchema = new mongoose.Schema(
       online: { type: Number },
       in_person: { type: Number },
     },
+    image: { type: String },
   },
   { timestamps: true }
 );
