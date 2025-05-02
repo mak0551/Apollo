@@ -36,10 +36,21 @@ export const addDoctor = async (req, res) => {
 
 export const getAllDoctors = async (req, res) => {
   try {
-    const docs = await doctor.find({});
+    const page = parseInt(req.query.page) || 1;
+    const limit = parseInt(req.query.limit) || 10;
+    const skip = (page - 1) * limit;
+    const docs = await doctor.find({}).skip(skip).limit(limit);
+    const total = await doctor.countDocuments();
+
     if (docs.length < 1)
       return res.status(404).json({ message: "no records found" });
-    res.status(200).json(docs);
+
+    res.status(200).json({
+      data: docs,
+      total,
+      page,
+      totalPages: Math.ceil(total / limit),
+    });
   } catch (err) {
     res
       .status(500)
