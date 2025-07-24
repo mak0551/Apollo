@@ -7,7 +7,9 @@ dotenv.config();
 
 const connectWithRetry = () => {
   return mongoose
-    .connect(process.env.DB_URL)
+    .connect(
+      "mongodb+srv://khanafroz1516:ovbkpW9r4zVxHiwG@cluster0.gox1der.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0"
+    )
     .then(() => {
       console.log("database connected successfully");
     })
