@@ -25,10 +25,8 @@ app.use(express.json());
 
 app.use(cors({ origin: "*" }));
 
-app.listen(process.env.PORT, () => {
-  console.log(
-    `server is listening on port http://localhost:${process.env.PORT}`
-  );
+app.listen(process.env.PORT || 4029, () => {
+  console.log(`server is listening on port http://localhost:4020`);
 });
 
 app.get("/", (req, res) => {
